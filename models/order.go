@@ -1,6 +1,6 @@
 package models
 
-import "time.Time"
+import "time"
 
 type Order struct {
   ID int64 `json:"id"`

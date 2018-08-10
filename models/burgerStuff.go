@@ -1,6 +1,6 @@
 package models
 
-type BurgerStuff {
-  Burger Burger`json:"burger"`
+type BurgerStuff struct{
+  Burger Burger `json:"burger"`
   Stuff Stuff `json:"stuff"`
 }
