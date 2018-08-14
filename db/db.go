@@ -1,14 +1,12 @@
-package main
+package db
 
 import (
   "database/sql"
   _ "github.com/go-sql-driver/mysql"
 )
 
-func getDatabase() *sql.DB {
-
+func GetDatabase() *sql.DB {
   db, err := sql.Open("mysql", "dodo:password@tcp(127.0.0.1:3306)/test")
-  defer db.Close()
   if err != nil{
     panic(err.Error())
   }
@@ -16,38 +14,31 @@ func getDatabase() *sql.DB {
   if err != nil{
     panic(err.Error())
   }
-
   return db
 }
 
-// func init
 //
+// func Populate(database *sql.DB) {
+//   GetDatabase()
+//   data, err := ioutil.ReadFile("./db/populate.sql")
 //
-//
-//
-//   rows, err := db.Query("Select * from users")
-//
-//   if err != nil {
-//     panic("rows error")
+//   if err != nil{
+//     panic(err.Error())
 //   }
+//   dataString := string(data[:])
 //
-//   var id int64
-//   var username, password string
 //
-//   for rows.Next() {
-//     err := rows.Scan(&id, &username, &password)
-//     if err != nil {
-//       panic(err.Error())
-//     }
+//   stmt, err := database.Prepare(dataString)sss
 //
-//     fmt.Println(id, username, password)
-//   }
-//   err = rows.Err()
 //   if err != nil {
 //     panic(err.Error())
 //   }
 //
-//   fmt.Println("Everything is ok !")
+//   fmt.Println(stmt)
+//   res, err := stmt.Exec()
 //
-//
+//   if err != nil{
+//     panic(err.Error())
+//   }
+//   fmt.Println(res)
 // }

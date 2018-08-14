@@ -1,14 +1,11 @@
 package main
 
 import (
-  "os"
-  "fmt"
-  "./models"
+  "./config"
 )
 
 func main(){
-  burger := new(models.Burger)
-  burger.ID = 5
-  fmt.Println(os.Args[1])
-  fmt.Println(burger)
+  config.InitApp()
+  config.RegisterControllers()
+  config.StartApp(":8080")
 }
