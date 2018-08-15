@@ -1,6 +1,7 @@
 package config
 
 import(
+  "log"
   "net/http"
   "../core"
   ctrl "../controllers"
@@ -13,9 +14,17 @@ func InitApp(){
   router = mux.NewRouter()
 }
 
+func RegisterStaticFiles() {
+  router.PathPrefix("/public/").Handler(http.StripPrefix("/public/", http.FileServer(http.Dir("./public/"))))
+}
+
 func RegisterControllers() {
   controller(new(ctrl.HomeController))
+  controller(new(ctrl.AccountController))
   controller(new(ctrl.UserController))
+  controller(new(ctrl.BurgerController))
+  controller(new(ctrl.CityController))
+  controller(new(ctrl.BasketController))
 }
 
 func controller (controller core.IController) {
@@ -23,5 +32,5 @@ func controller (controller core.IController) {
 }
 
 func StartApp(at string){
-  http.ListenAndServe(at, router)
+  log.Fatal(http.ListenAndServe(at, router))
 }

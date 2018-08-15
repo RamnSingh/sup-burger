@@ -1,7 +1,7 @@
 package controllers
 
 import(
-  _ "../core"
+  core "../core"
   "net/http"
   "github.com/gorilla/mux"
 )
@@ -14,5 +14,5 @@ func (controller *HomeController) RegisterHandles(router *mux.Router){
 
 
 func HomePageHandler(res http.ResponseWriter, req *http.Request){
-  res.Write([]byte("Hello"))
+  core.View(res, "account/index.html", nil)
 }

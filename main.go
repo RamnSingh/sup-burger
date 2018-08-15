@@ -6,6 +6,7 @@ import (
 
 func main(){
   config.InitApp()
+  config.RegisterStaticFiles()
   config.RegisterControllers()
-  config.StartApp(":8080")
+  config.StartApp(":1010")
 }

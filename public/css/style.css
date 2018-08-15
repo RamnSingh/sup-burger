@@ -1,0 +1,31 @@
+/* Common */
+
+.nav-menu{
+    background: #2d3e50;
+    
+}
+.nav-menu *{
+    color: #fff;
+}
+.nav-menu > .pure-menu-heading{
+    font-weight: bolder;
+}
+.nav-menu .pure-menu-list{
+    float: right;
+    margin-right: 5%;
+}
+.footer{
+    text-align: center;
+    padding: 15px 0px;
+    background: rgb(0, 0, 0);
+    color: #fff;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+}
+
+/* Register */
+
+#register-div{
+    margin-top: 5%;
+}

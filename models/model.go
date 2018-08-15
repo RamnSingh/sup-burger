@@ -1,5 +1,9 @@
 package models
 
-type Model struct {
+import (
+	"net/http"
+)
 
+type Model interface {
+	PopulateFromForm(req http.Request)
 }
