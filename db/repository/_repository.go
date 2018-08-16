@@ -8,7 +8,7 @@ import(
 type Repository struct {
 }
 
-func (rep *Repository) Get(query string) (rows *sql.rows) {
+func (rep *Repogsitory) Get(query string) (rows *sql.rows) {
 
 }
 

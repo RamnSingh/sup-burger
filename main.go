@@ -8,5 +8,5 @@ func main(){
   config.InitApp()
   config.RegisterStaticFiles()
   config.RegisterControllers()
-  config.StartApp(":1010")
+  config.StartApp(":8080")
 }

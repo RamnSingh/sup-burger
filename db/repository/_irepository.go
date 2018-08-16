@@ -5,7 +5,7 @@ import(
   "../../models"
 )
 
-type IRepository interface {
+type irepository interface {
   Get(string) *sql.rows
   Delete(string) int
   Edit(string) int

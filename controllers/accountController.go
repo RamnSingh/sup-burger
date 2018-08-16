@@ -6,6 +6,8 @@ import(
   "github.com/gorilla/mux"
   "fmt"
   "../models"
+  "../validators/account_validator"
+  "errors"
 )
 
 type AccountController struct{}
@@ -24,12 +26,17 @@ func AccountRegisterHandler(res http.ResponseWriter, req *http.Request){
     user.PopulateFromForm(*req)
 
     if len(req.Form["cf-password"]) > 0 {
-      if user.Password == req.Form["cf-password"][0] {
-        
+      err := account_validator.Register(user, req.Form["cf-password"][0])
+
+      if err != nil {
+        fmt.Println(err.Error())
       }
+    }else{
+      fmt.Println("confirm password")
     }
+  }else {
+    core.View(res, "account/register.html", nil)
   }
-  core.View(res, "account/register.html", nil)
 }
 
 func AccountLoginHandler(res http.ResponseWriter, req *http.Request){

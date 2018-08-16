@@ -4,6 +4,6 @@ import (
 	"net/http"
 )
 
-type Model interface {
+type model interface {
 	PopulateFromForm(req http.Request)
 }
