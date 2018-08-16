@@ -9,40 +9,38 @@ type DB struct {
   DB *sql.DB
 }
 
-func GetDatabase() *sql.DB {
-  db, err := sql.Open("mysql", "dodo:password@tcp(127.0.0.1:3306)/test")
-  if err != nil{
-    panic(err.Error())
+var db DB
+
+func InitDatabase() {
+  if db.DB == nil {
+    database, err := sql.Open("mysql", "dodo:password@tcp(127.0.0.1:3306)/sup_burger")
+    if err != nil{
+      panic(err.Error())
+    }
+    err = database.Ping()
+    if err != nil{
+      panic(err.Error())
+    }
+    db.DB = database
   }
-  err = db.Ping()
-  if err != nil{
-    panic(err.Error())
-  }
-  return db
 }
 
-//
-// func Populate(database *sql.DB) {
-//   GetDatabase()
-//   data, err := ioutil.ReadFile("./db/populate.sql")
-//
-//   if err != nil{
-//     panic(err.Error())
-//   }
-//   dataString := string(data[:])
-//
-//
-//   stmt, err := database.Prepare(dataString)sss
-//
-//   if err != nil {
-//     panic(err.Error())
-//   }
-//
-//   fmt.Println(stmt)
-//   res, err := stmt.Exec()
-//
-//   if err != nil{
-//     panic(err.Error())
-//   }
-//   fmt.Println(res)
-// }
+func Select (query string, args ...interface{})(*sql.Rows, error) {
+  return db.DB.Query(query, args)
+}
+
+func SelectRow (query string, args ...interface{})(*sql.Row) {
+  return db.DB.QueryRow(query, args)
+}
+
+func Insert (query string, args ...interface{})(sql.Result, error) {
+  return db.DB.Exec(query, args)
+}
+
+func Update (query string, args ...interface{})(sql.Result, error) {
+  return db.DB.Exec(query, args)
+}
+
+func Delete (query string, args ...interface{})(sql.Result, error) {
+  return db.DB.Exec(query, args)
+}

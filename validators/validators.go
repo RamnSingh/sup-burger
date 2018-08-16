@@ -1,7 +1,7 @@
-import validators
+package validators
 
 import(
-  "strings"
+  // "strings"
 )
 
 func Required(data string){

@@ -6,6 +6,7 @@ import(
   "../core"
   ctrl "../controllers"
   "github.com/gorilla/mux"
+  "../db"
 )
 
 var router *mux.Router
@@ -32,5 +33,6 @@ func controller (controller core.IController) {
 }
 
 func StartApp(at string){
+  db.InitDatabase()
   log.Fatal(http.ListenAndServe(at, router))
 }
