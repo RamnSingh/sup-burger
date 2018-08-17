@@ -18,6 +18,9 @@
                         <label for="cf-password">Confirm password</label>
                         <input id="cf-password" name="cf-password" class="pure-input-1" type="password" placeholder="Confirm password" />
                         <br/>
+                        {{ range $key, $value := . }}
+                          <h1>OK</h1>
+                        {{end}}
                         <button type="submit" class="pure-button pure-button-primary button-large">Sign in</button>
                     </fieldset>
                 </form>

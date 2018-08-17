@@ -3,6 +3,7 @@ package db
 import (
   "database/sql"
   _ "github.com/go-sql-driver/mysql"
+  "fmt"
 )
 
 type DB struct {
@@ -26,21 +27,22 @@ func InitDatabase() {
 }
 
 func Select (query string, args ...interface{})(*sql.Rows, error) {
-  return db.DB.Query(query, args)
+  return db.DB.Query(query, args...)
 }
 
 func SelectRow (query string, args ...interface{})(*sql.Row) {
-  return db.DB.QueryRow(query, args)
+  return db.DB.QueryRow(query, args...)
 }
 
 func Insert (query string, args ...interface{})(sql.Result, error) {
-  return db.DB.Exec(query, args)
+  fmt.Println(args)
+  return db.DB.Exec(query, args...)
 }
 
 func Update (query string, args ...interface{})(sql.Result, error) {
-  return db.DB.Exec(query, args)
+  return db.DB.Exec(query, args...)
 }
 
 func Delete (query string, args ...interface{})(sql.Result, error) {
-  return db.DB.Exec(query, args)
+  return db.DB.Exec(query, args...)
 }

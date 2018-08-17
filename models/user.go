@@ -17,7 +17,7 @@ type User struct {
   ImgPath string `json:"imgPath"`
   Blocked bool `json:"blocked"`
   Street string `json:"street" validate:"required"`
-  City string `json:"city" validate:"required"`
+  City City `json:"city" validate:"required"`
   Role Role `json:"role"`
 }
 
@@ -48,8 +48,8 @@ func (user *User) Register(roleId uint) (error){
   if err != nil{
     return err
   }
-  query := "INSERT INTO user (username, email, password, blocked, street, city, role) VALUES(?,?,?,?,?,?,?)"
-  args := []interface{}{user.Username, user.Email, password, false, user.Street, user.City}
+  query := "INSERT INTO user (username, email, password, blocked, street, city, role_id) VALUES(?,?,?,?,?,?,?)"
+  args := []interface{}{user.Username, user.Email, password, false, user.Street, user.City, roleId}
 
   _, err = db.Insert(query, args...)
 

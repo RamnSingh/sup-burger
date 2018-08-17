@@ -42,7 +42,13 @@ func AccountRegisterHandler(res http.ResponseWriter, req *http.Request){
       fmt.Println("confirm password not found")
     }
   }else {
-    core.View(res, "account/register.html", nil)
+    data, err := models.GetAllCities()
+    if err != nil {
+      core.View(res, "account/index.html", nil)
+    } else {
+      core.View(res, "account/register.html", data)
+    }
+
   }
 }
 

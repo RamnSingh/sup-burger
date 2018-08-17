@@ -60,15 +60,19 @@ CREATE TABLE `city_burger` (
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `name` VARCHAR(255) NOT NULL,
+    `username` VARCHAR(255) NOT NULL,
     `email` VARCHAR(255) NOT NULL,
     `blocked` BOOLEAN NOT NULL,
-    `img_path` VARCHAR(1000) NOT NULL,
+    `img_path` VARCHAR(1000)  NULL,
     `password` VARCHAR(1000) NOT NULL,
+    `street` VARCHAR(1000) NOT NULL,
+    `city_id` INT NOT NULL,
     `role_id` INT NOT NULL,
+    FOREIGN KEY (city_id)
+        REFERENCES city (id),
     FOREIGN KEY (role_id)
         REFERENCES role (id),
-    UNIQUE (name),
+    UNIQUE (username),
     UNIQUE (email)
 )  ENGINE=INNODB;
 
