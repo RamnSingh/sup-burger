@@ -4,8 +4,7 @@ DROP TABLE IF EXISTS `stuff`;
 CREATE TABLE `stuff` (
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `name` VARCHAR(255) NOT NULL,
-    `description` TEXT  NULL,
-    `img_path` VARCHAR(1000) NOT NULL
+    `description` TEXT  NULL
 )  ENGINE=INNODB;
 
 
