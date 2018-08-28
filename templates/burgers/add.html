@@ -1,0 +1,62 @@
+{{define "content"}}
+<br/>
+<div class="pure-g">
+    <div class="pure-u-1-24 pure-u-md-1-5 pure-u-sm-2-24"></div>
+    <div class="pure-u-22-24 pure-u-md-3-5 pure-u-sm-20-24">
+            <form class="pure-form pure-form-stacked" method="POST" action="/burgers/add" enctype="multipart/form-data">
+                    <fieldset>
+                        <legend>Add burger</legend>
+
+                        <div class="pure-g">
+                          <div class="pure-u-1">
+                            <label for="name">Burger's name</label>
+                            <input type="text" name="name" id="name" class="pure-u-23-24">
+                          </div>
+
+                          <div class="pure-u-1 pure-u-md-1-2">
+                            <label for="stuff">Stuff</label>
+                            <select class="pure-u-23-24" name="stuff" multiple="multiple">
+                              {{range $key, $value := .data.stuff}}
+                              <option value="{{$value.ID}}">{{$value.Name}}</option>
+                              {{end}}
+                            </select>
+                          </div>
+
+                          <div class="pure-u-1 pure-u-md-1-2">
+                            <label for="stuff">Cities</label>
+                            <select class="pure-u-23-24" name="cities" multiple="multiple">
+                              {{range $key, $value := .data.cities}}
+                              <option value="{{$value.ID}}">{{$value.Name}}</option>
+                              {{end}}
+                            </select>
+                          </div>
+
+                          <div class="pure-u-1">
+                            <label for="description">Description</label>
+                            <textarea name="description" rows="8" class="pure-input-1"></textarea>
+                          </div>
+
+                          <div class="pure-u-1">
+                            <label for="image">Image</label>
+                            <input type="file" accept="image/jpeg" name="image" id="image" class="pure-u-23-24">
+                          </div>
+
+                          <div class="pure-u-1 pure-u-md-1-2">
+                            <label for="price">Price</label>
+                            <input type="text" name="price" id="price" class="pure-u-23-24">
+                          </div>
+
+                          <div class="pure-u-1 pure-u-md-1-2">
+                            <label for="stock">Stock</label>
+                            <input type="number" name="stock" id="stock" class="pure-u-23-24">
+                          </div>
+
+                        </div>
+
+                        <button type="submit" class="pure-button button-success button-large">Add burger</button>
+                    </fieldset>
+                </form>
+    </div>
+    <div class="pure-u-1-24 pure-u-md-1-5 pure-u-sm-2-24"></div>
+</div>
+{{end}}

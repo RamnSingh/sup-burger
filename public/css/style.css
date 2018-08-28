@@ -42,7 +42,19 @@
     font-size: 125%;
 }
 
+.panel {
+  background: #1f8dd6;
+  margin: 1em 0;
+  padding: 0.3em 1em;
+  border-radius: 3px;
+  color: #fff;
+}
+
 /* Common */
+
+main {
+  min-height: 800px;
+}
 
 .nav-menu{
     background: #2d3e50;
@@ -63,9 +75,7 @@
     padding: 15px 0px;
     background: rgb(0, 0, 0);
     color: #fff;
-    position: absolute;
     width: 100%;
-    bottom: 0px;
 }
 
 
@@ -83,4 +93,48 @@
 
 #register-form label, #register-form legend{
   color: #fff;
+}
+
+/* Burger Index */
+.burger-card-container{
+  margin: 50px 0px 50px 150px;
+}
+
+.burger-card {
+  margin: 5px;
+}
+.burger-card > img {
+  width: 100%;
+  border: 1px solid #09a3bc;
+  box-shadow: 2px 2px #09a3bc;
+}
+
+.burger-card-info {
+  padding: 5px;
+  margin: 5px 0;
+  text-align: center;
+  background: #ccc;
+  border-radius: 5px;
+}
+
+.burger-card-info > .burger-name{
+  font-size: 1.5em;
+  margin: 5px;
+}
+
+.burger-card-info > .burger-description{
+  margin: 5px;
+  color: #000;
+}
+
+
+/* DAshboard */
+#dashboard-title{
+  background: antiquewhite;
+}
+
+#dashboard-title > h1 {
+  text-align: center;
+  padding: 20px;
+  font-size: 3em;
 }

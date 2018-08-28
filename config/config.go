@@ -25,6 +25,7 @@ func RegisterControllers() {
   controller(new(ctrl.UserController))
   controller(new(ctrl.BurgerController))
   controller(new(ctrl.CityController))
+  controller(new(ctrl.StuffController))
   controller(new(ctrl.BasketController))
 }
 

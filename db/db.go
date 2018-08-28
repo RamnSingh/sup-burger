@@ -3,7 +3,6 @@ package db
 import (
   "database/sql"
   _ "github.com/go-sql-driver/mysql"
-  "fmt"
 )
 
 type DB struct {
@@ -14,7 +13,7 @@ var db DB
 
 func InitDatabase() {
   if db.DB == nil {
-    database, err := sql.Open("mysql", "dodo:password@tcp(127.0.0.1:3306)/sup_burger")
+    database, err := sql.Open("mysql", "dodo:password@tcp(127.0.0.1:3306)/sup_burger?parseTime=true")
     if err != nil{
       panic(err.Error())
     }
@@ -35,7 +34,6 @@ func SelectRow (query string, args ...interface{})(*sql.Row) {
 }
 
 func Insert (query string, args ...interface{})(sql.Result, error) {
-  fmt.Println(args)
   return db.DB.Exec(query, args...)
 }
 
@@ -45,4 +43,9 @@ func Update (query string, args ...interface{})(sql.Result, error) {
 
 func Delete (query string, args ...interface{})(sql.Result, error) {
   return db.DB.Exec(query, args...)
+}
+
+func Exec(query string, args ...interface{}) error {
+  _, err := db.DB.Exec(query, args...)
+  return err
 }

@@ -1,0 +1,87 @@
+{{define "content"}}
+<br/>
+<div class="pure-g">
+  <div class="pure-u-1">
+    <div style="margin: 5px 0px 5px 30px">
+      <form class="pure-form" action="/burgers" method="get">
+        <label>City :</label>
+
+          {{if .isLoggedIn}}
+          <select name="city" disabled>
+            <option value="{{.session.City.Name}}">{{.session.City.Name}}</option>
+          {{else}}
+          <select name="city">
+            <option value="">Not selected</option>
+            {{range $key, $value := .data.Cities}}
+            <option value="{{$value.Name}}">{{$value.Name}}</option>
+            {{end}}
+          {{end}}
+
+
+        </select>
+        <label>Ingredients :</label>
+        <select name="stuff">
+          <option value="">Any</option>
+          {{range $key, $value := .data.Stuffs}}
+          <option value="{{$value.Name}}">{{$value.Name}}</option>
+          {{end}}
+        </select>
+
+        <label>Order :</label>
+        <select name="name">
+          <option value="">By name</option>
+          <option value="asc">A to Z</option>
+          <option value="desc">Z to A</option>
+        </select>
+        <select name="price">
+          <option value="">By price</option>
+          <option value="asc">Lower to higher</option>
+          <option value="desc">Higher to lower</option>
+        </select>
+        &nbsp;&nbsp;
+        <button type="submit" class="pure-button pure-button-primary">Apply</button>
+        &nbsp;&nbsp;
+        <a href="/burgers/add" class="pure-button button-success">Add a burger</a>
+      </form>
+    </div>
+  </div>
+
+</div>
+<div class="pure-g">
+  {{if eq (len .data.Burgers) 0}}
+    <div class="pure-u-1-3 pure-u-md-1-3 pure-u-sm-4-24"></div>
+    <div class="pure-u-1-3 pure-u-md-1-3 pure-u-sm-16-24">
+      <h2>No burgers, sorry :-(</h2>
+    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 pure-u-sm-4-24"></div>
+  {{else}}
+  {{range $key, $value := .data.Burgers}}
+  <div class="pure-u-1-4 pure-u-md-1-4 pure-u-sm-1 burger-card-container">
+    <div class="burger-card">
+      <img src="/public/assets/images/burgers/{{$value.ImgPath}}"/>
+      <div class="burger-card-info">
+        <h2 class="burger-price">{{$value.Price}} €</h2>
+        <div class="burger-name">{{$value.Name}}</div>
+        <div class="burger-description">{{$value.Description}}</div>
+        <a href="/burgers/details/{{$value.ID}}" class="pure-button button-secondary">Details</a>
+      </div>
+      <div class="admin-actions pure-g">
+        <div class="pure-u-1-2">
+          <a href="/burgers/edit/{{$value.ID}}"  style="width:100%" class="pure-button button-warning pure-input-1">Edit</a>
+        </div>
+        <div class="pure-u-1-2">
+          <form action="/burgers/delete" method="POST">
+            <input type="hidden" name="burger-id" value="{{$value.ID}}">
+            <button type="submit" class="pure-button button-error" style="width:100%">Delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{end}}
+
+  {{end}}
+
+
+</div>
+{{end}}

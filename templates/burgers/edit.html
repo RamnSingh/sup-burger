@@ -1,0 +1,84 @@
+{{define "content"}}
+{{$burgerId := .data.Burger.ID}}
+<br/>
+<div class="pure-g">
+    <div class="pure-u-1-24 pure-u-md-1-5 pure-u-sm-2-24"></div>
+    <div class="pure-u-22-24 pure-u-md-3-5 pure-u-sm-20-24">
+      <div class="pure-g" id="burger-details-div">
+        <div class="pure-u-md-1-2 pure-u-sm-1" id="burger-img-div">
+          <img src="/public/assets/images/burgers/{{.data.Burger.ImgPath}}" />
+        </div>
+        <div class=" pure-u-md-1-2 pure-u-sm-1" id="burger-info">
+          <form class="pure-form pure-form-stacked" action="/burgers/edit" method="post">
+            <input type="hidden" name="id" value="{{.data.Burger.ID}}">
+            <label>Name</label>
+            <input type="text" name="name" value="{{.data.Burger.Name}}">
+            <label>Description</label>
+            <input type="text" name="description" value="{{.data.Burger.Description}}">
+            <label>Price</label>
+            <input type="text" name="price" value="{{.data.Burger.Price}}">
+            <label>Stock</label>
+            <input type="text" name="stock" value="{{.data.Burger.Stock}}">
+            <input type="submit" value="Update" class="pure-button button-secondary">
+          </form>
+          <br>
+          Stuffs :
+          <ul style="list-style: none;padding-left: 0;">
+            {{range $key, $value := .data.Burger.Stuffs}}
+            <li>
+              <form class="pure-form" action="/burger/stuff/delete" method="post">
+                <input type="hidden" name="burger-id" value="{{$burgerId}}">
+                <input type="hidden" name="stuff-id" value="{{$value.ID}}">
+                {{$value.Name}}&nbsp;&nbsp;
+                <button type="submit" class="pure-button button-error">Delete</button>
+              </form>
+            </li>
+            {{end}}
+          </ul>
+
+          <br>
+          {{if .data.Stuffs}}
+            Add stuff
+            <form class="pure-form" action="/burger/stuff/add" method="post">
+              <input type="hidden" name="burger-id" value="{{.data.Burger.ID}}">
+              <select class="" name="stuff-id">
+                {{range $key, $value := .data.Stuffs}}
+                <option value="{{$value.ID}}">{{$value.Name}}</option>
+                {{end}}
+              </select>&nbsp;&nbsp;
+              <button type="submit" class="pure-button pure-button-primary">Add</button>
+            </form>
+            {{end}}
+            <br>
+            <ul style="list-style: none;padding-left: 0;">
+              {{range $key, $value := .data.Burger.Cities}}
+              <li>
+                <form class="pure-form" action="/city/burger/delete" method="post">
+                  <input type="hidden" name="burger-id" value="{{$burgerId}}">
+                  <input type="hidden" name="city-id" value="{{$value.ID}}">
+                  {{$value.Name}}&nbsp;&nbsp;
+                  <button type="submit" class="pure-button button-error">Delete</button>
+                </form>
+              </li>
+              {{end}}
+            </ul>
+            <br/>
+            {{if .data.Cities}}
+            Cities :
+            <form class="pure-form" action="/city/burger/add" method="post">
+              <input type="hidden" name="burger-id" value="{{.data.Burger.ID}}">
+              <select class="" name="stuff-id">
+                {{range $key, $value := .data.Cities}}
+                <option value="{{$value.ID}}">{{$value.Name}}</option>
+                {{end}}
+              </select>&nbsp;&nbsp;
+              <button type="submit" class="pure-button pure-button-primary">Add</button>
+            </form>
+            {{end}}
+
+        </div>
+      </div>
+    </div>
+    <div class="pure-u-1-24 pure-u-md-1-5 pure-u-sm-2-24"></div>
+</div>
+{{end}}

@@ -17,10 +17,14 @@
 
                         <label for="cf-password">Confirm password</label>
                         <input id="cf-password" name="cf-password" class="pure-input-1" type="password" placeholder="Confirm password" />
+                        <label for="street">Street</label>
+                        <input id="street" name="street" class="pure-input-1" type="text" placeholder="Street" />
                         <br/>
-                        {{ range $key, $value := . }}
-                          <h1>OK</h1>
-                        {{end}}
+                        <select class="pure-input-1" name="city">
+                          {{ range $key, $value := .data }}
+                            <option value="{{$value.ID}}">{{$value.Name}}</option>
+                          {{end}}
+                        </select>
                         <button type="submit" class="pure-button pure-button-primary button-large">Sign in</button>
                     </fieldset>
                 </form>

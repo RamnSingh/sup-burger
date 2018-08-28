@@ -30,7 +30,7 @@ CREATE TABLE `burger` (
     `description` TEXT NOT NULL,
     `img_path` VARCHAR(1000) NOT NULL,
     `price` DECIMAL NOT NULL,
-    `stock` SMALLINT NOT NULL,
+    `stock` INT NOT NULL,
     `stuff_id` INT NOT NULL,
     FOREIGN KEY (stuff_id)
         REFERENCES stuff (id)
@@ -81,16 +81,9 @@ DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order` (
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `date` DATETIME NOT NULL,
-    `bill_path` VARCHAR(1000) NOT NULL,
+    `pdf_path` VARCHAR(1000) NOT NULL,
     `total_price` DECIMAL NOT NULL,
-    `quantity` SMALLINT NOT NULL,
-    `burger_id` INT NOT NULL,
     `user_id` INT NOT NULL,
-    `stuff_id` INT NOT NULL,
-    FOREIGN KEY (stuff_id)
-        REFERENCES stuff (id),
-    FOREIGN KEY (burger_id)
-        REFERENCES burger (id),
     FOREIGN KEY (user_id)
         REFERENCES user (id)
 )  ENGINE=INNODB;

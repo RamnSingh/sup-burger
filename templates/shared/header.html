@@ -3,9 +3,24 @@
     <nav class="pure-menu pure-menu-horizontal pure-menu-scrollable nav-menu">
         <a href="/" class="pure-menu-link pure-menu-heading">Burger</a>
         <ul class="pure-menu-list">
-            <li class="pure-menu-item"><a href="/users" class="pure-menu-link">Utilisateurs</a></li>
-            <li class="pure-menu-item"><a href="/burgers" class="pure-menu-link">Nos burgers</a></li>
-            <li class="pure-menu-item"><a href="/cities" class="pure-menu-link">Villes servies</a></li>
+            {{if .isAdmin}}
+            <li class="pure-menu-item"><a href="/users" class="pure-menu-link">Users</a></li>
+            <li class="pure-menu-item"><a href="/cities" class="pure-menu-link">Cities</a></li>
+            <li class="pure-menu-item"><a href="/stuffs" class="pure-menu-link">Stuff</a></li>
+            {{ end }}
+            <li class="pure-menu-item"><a href="/burgers" class="pure-menu-link">Burgers</a></li>
+            <li class="pure-menu-item"><a href="/basket" class="pure-menu-link">Basket</a></li>
+            {{if .isLoggedIn}}
+            <li class="pure-menu-item"><a href="/users/profile" class="pure-menu-link">Profile</a></li>
+            <li class="pure-menu-item">
+              <form class="" action="/account/logout" method="post">
+                <button type="submit" class="pure-button button-secondary">Logout</button>
+              </form>
+            </li>
+            {{else}}
+            <li class="pure-menu-item"><a href="/account/login" class="pure-menu-link">Login</a></li>
+            <li class="pure-menu-item"><a href="/account/register" class="pure-menu-link">Register</a></li>
+            {{end}}
         </ul>
     </nav>
 </header>
