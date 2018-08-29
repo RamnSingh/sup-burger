@@ -13,7 +13,10 @@ var db DB
 
 func InitDatabase() {
   if db.DB == nil {
-    database, err := sql.Open("mysql", "dodo:password@tcp(127.0.0.1:3306)/sup_burger?parseTime=true")
+    databaseName := "sup_burger"
+    databaseUser := "dodo"
+    databasePassword := "password"
+    database, err := sql.Open("mysql", databaseUser + ":" + databasePassword + "@tcp(127.0.0.1:3306)/" + databaseName + "?parseTime=true")
     if err != nil{
       panic(err.Error())
     }
